@@ -34,4 +34,20 @@ def solve():
             if not pos:
                 cnt += 1
     return cnt
-print(solve())
+def solve2():
+    pos = 50
+    cnt = 0
+    mem = {
+        'L': -1,
+        'R': 1
+    }
+    with open('day1/input.txt', 'r') as f:
+        for line in f:
+            line = line.strip()
+            d = mem[line[:1]]
+            m = int(line[1:])
+            pos += (d*m)
+            pos %= 100
+            if not pos:
+                cnt += 1
+    return cnt
