@@ -41,8 +41,7 @@ def part2():
     with open('day3/input.txt', 'r') as f:
         for line in f:
             line = line.strip()
-            cnt += int(w:=fn(line))
-            print(w)
+            cnt += int(fn(line))
     return cnt
 
 
