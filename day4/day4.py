@@ -13,32 +13,28 @@ def part1():
             line = line.strip()
             grid.append(list(line))
     row = len(grid)
-    col = len(grid[0])         
-    directions = ( 
+    col = len(grid[0])
+    directions = (
         [1, 0], [0, 1], [-1, 0], [0, -1], [1, -1], [1, 1], [-1, 1], [-1, -1]
     )
 
-    def bounds(x, y): 
-        return 0<= x < row and 0<=y<col
-    def explore(x, y):
+    def bounds(x, y):
+        return 0 <= x < row and 0 <= y < col
+
+    def validate(x, y):
         cnt = 0
-        for dx,dy in directions:
-            nx,ny = dx+x,dy+y
-            if bounds(nx,ny) and grid[nx][ny] == '@':
-                cnt+=1
+        for dx, dy in directions:
+            nx, ny = dx+x, dy+y
+            if bounds(nx, ny) and grid[nx][ny] == '@':
+                cnt += 1
         return cnt < 4
-            
+
     cnt = 0
     for i in range(row):
         for j in range(col):
-            if grid[i][j] in '@' and explore(i,j):
-                cnt+=1
+            if grid[i][j] in '@' and validate(i, j):
+                cnt += 1
     return cnt
-print(part1())
-
-'''
-dfs explore every possible combo of take/skip
-'''
 
 
 def part2():
@@ -48,25 +44,34 @@ def part2():
             line = line.strip()
             grid.append(list(line))
     row = len(grid)
-    col = len(grid[0])         
-    directions = ( 
+    col = len(grid[0])
+    directions = (
         [1, 0], [0, 1], [-1, 0], [0, -1], [1, -1], [1, 1], [-1, 1], [-1, -1]
     )
 
-    def bounds(x, y): 
-        return 0<= x < row and 0<=y<col
-    def explore(x, y):
+    def bounds(x, y):
+        return 0 <= x < row and 0 <= y < col
+
+    def validate(x, y):
         cnt = 0
-        for dx,dy in directions:
-            nx,ny = dx+x,dy+y
-            if bounds(nx,ny) and grid[nx][ny] == '@':
-                cnt+=1
+        for dx, dy in directions:
+            nx, ny = dx+x, dy+y
+            if bounds(nx, ny) and grid[nx][ny] == '@':
+                cnt += 1
         return cnt < 4
-            
+
+    # if we can take then we could make more rolls less rolls = more options stop if we cant take any at all 
     cnt = 0
-    for i in range(row):
-        for j in range(col):
-            if grid[i][j] in '@' and explore(i,j):
-                cnt+=1
+    possible = True
+    while possible:
+        possible = False
+        for i in range(row):
+            for j in range(col):
+                if grid[i][j] in '@' and validate(i, j):
+                    grid[i][j] = '.'
+                    cnt += 1
+                    possible = True
     return cnt
-print(part1())
+
+
+print(part2())
