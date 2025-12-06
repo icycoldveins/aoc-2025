@@ -60,7 +60,7 @@ def part2():
                 cnt += 1
         return cnt < 4
 
-    # if we can take then we could make more rolls less rolls = more options stop if we cant take any at all 
+    # if we can take then we could make more rolls less rolls = more options stop if we cant take any at all
     cnt = 0
     possible = True
     while possible:
