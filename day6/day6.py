@@ -38,30 +38,31 @@ def part2():
     }
     with open('day6/input.txt', 'r') as f:
         collect = [line[:-1] for line in f]
-        maxcol = max(len(line) for line in collect)
-        col = maxcol - 1
-        temp = ""
-        calc = []
-        ans = 0
-        while col >= 0:
-            for line in collect:
-                if col >= len(line):
-                    continue
-                v = line[col]
-                if v in {'*', '+'}:
-                    calc.append(int(temp))
-                    ans += reduce(operation[v], calc)
-                    temp = ""
-                    calc = []
-                elif v == ' ':
-                    continue
-                else:
-                    temp += v
-            if temp:
+        
+    maxcol = max(len(line) for line in collect)
+    col = maxcol - 1
+    temp = ""
+    calc = []
+    ans = 0
+    while col >= 0:
+        for line in collect:
+            if col >= len(line):
+                continue
+            v = line[col]
+            if v in {'*', '+'}:
                 calc.append(int(temp))
+                ans += reduce(operation[v], calc)
                 temp = ""
-            col -= 1
-        print(ans)
+                calc = []
+            elif v == ' ':
+                continue
+            else:
+                temp += v
+        if temp:
+            calc.append(int(temp))
+            temp = ""
+        col -= 1
+    print(ans)
 
 part1()
 part2()
