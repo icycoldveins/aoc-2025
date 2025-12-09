@@ -18,7 +18,6 @@ def part1():
                     splits.add(i+1)
         print(cnt)
 def part2():
-    splits = set()
     coalesce = []
     cnt=0
     with open('day7/input.txt', 'r') as f:
