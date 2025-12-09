@@ -34,7 +34,7 @@ def part2():
     row_map = {r: 2 * i + 1 for i, r in enumerate(rows)}
 
     C, R = 2 * len(cols) + 2, 2 * len(rows) + 2
-    grid = [[' '] * R for _ in range(C)]
+    grid = [['.'] * R for _ in range(C)]
 
     for i in range(n):
         p1, p2 = points[i], points[(i + 1) % n]
@@ -49,7 +49,7 @@ def part2():
     while stack:
         c, r = stack.pop()
         for nc, nr in [(c+1, r), (c-1, r), (c, r+1), (c, r-1)]:
-            if 0 <= nc < C and 0 <= nr < R and grid[nc][nr] == ' ':
+            if 0 <= nc < C and 0 <= nr < R and grid[nc][nr] == '.':
                 grid[nc][nr] = 'X'
                 stack.append((nc, nr))
 
